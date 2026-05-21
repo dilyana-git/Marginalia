@@ -1,0 +1,313 @@
+{
+  "course": {
+    "title": "A Course of Study",
+    "intro": "Seven regions, drawn as paths from familiar ground. You set the first two regions yourself \u2014 Artificial Intelligence, then Mathematics. The remaining five are ordered by leverage: how much each would change the way you think, weighted toward what touches work and life you are already living. Probability comes third because it is the hidden spine of your profession. Cognitive science fourth, because it is the largest worldview shift on offer and bonds directly to your deepest interest. Economics fifth, philosophy sixth as scaffolding, and a wider history last \u2014 lighter in leverage, generous in reward.",
+    "ordering_rationale": "Two currents run through the whole course. A quantitative spine \u2014 regions I, II, III \u2014 moving from machines to mathematics to risk. And a humanities spine \u2014 IV through VII \u2014 moving from mind to society to history. They are meant to be walked in parallel, not strictly in series. Read from whichever region is pulling hardest; the numbers are priority, not a locked sequence.",
+    "colophon": "Seven regions, some two dozen books, and a dozen free essays. The map exists so that whenever curiosity stirs, there is already a path drawn \u2014 a footpath to step onto, a ridge waiting beyond it, and a short dispatch to read on the way. The gaps here are not deficiencies. They are the negative space of a mind that has been deeply, deliberately shaped \u2014 and negative space is only ever an invitation.",
+    "tiers": {
+      "footpath": "Accessible entry, low effort, high orientation.",
+      "ridge": "The substantial core; where the real ground is covered.",
+      "summit": "Deeper or harder; optional, for when a region grips you."
+    }
+  },
+
+  "reader": {
+    "name": "Dilyana",
+    "interests": "a product manager and creative technologist who follows artificial intelligence, mathematics, probability and risk, cognitive science, economics, philosophy, and world history",
+    "timezone": "Europe/Sofia"
+  },
+
+  "gap_analysis": {
+    "preamble": "Conversations are a biased sample \u2014 these are areas that haven't appeared in our exchanges, not necessarily things you don't know.",
+    "shape_diagnosis": "Your intellectual profile has a coherent shape. You are strong at symbolic and narrative thinking (Jung, Carter, Borges, mythopoeic worldbuilding), at systems and process analysis (requirements engineering, the audit app), and at qualitative-empirical research (the skincare work is genuinely rigorous). What is lighter is the quantitative, formal, and mechanistic register. Almost every gap clusters there.",
+    "gap_clusters": [
+      { "name": "Probability and risk",          "summary": "The most striking gap, because insurance is at its mathematical core applied probability: risk pooling, expected value, tail risk. Your analytical work shows up as process analysis, not quantitative risk reasoning." },
+      { "name": "Economics",                      "summary": "You engage with the symptoms \u2014 inequality, OPEC, budget-travel arbitrage \u2014 without the engine: how markets coordinate, monetary policy, development economics." },
+      { "name": "AI under the hood",              "summary": "You operate skilfully at the application layer; the substrate \u2014 transformers, training, hallucination \u2014 is opaque. Highest-leverage gap given how central AI is to your work and craft." },
+      { "name": "The empirical sciences",         "summary": "Physics, evolutionary biology, cosmology, and especially cognitive science are nearly absent; pairing them with your Jungian frame would add a second instrument to triangulate myth with." },
+      { "name": "Mathematics as an aesthetic",    "summary": "Already hiding in things you love. Borges is set theory and infinity; Piranesi is recursion; Escher is symmetry. The aesthetic doorway you have been circling." },
+      { "name": "Formal philosophy",              "summary": "Borges and Jung give you informal philosophical fluency; the formal discipline would supply the scaffolding \u2014 epistemology, philosophy of mind, ethics, political philosophy." },
+      { "name": "Big history and non-Western thought", "summary": "A lighter gap: synthetic global history, and Buddhist / Hindu / Chinese thought beyond the Islamic civilisation you already know." }
+    ]
+  },
+
+  "regions": [
+    {
+      "ordinal": 1,
+      "name": "Artificial Intelligence",
+      "qualifier": "understood from underneath",
+      "why": "You build with these systems daily, but at the application layer \u2014 vibe coding leaves the substrate opaque. This region is the move from operating the machine to reasoning about it: what a transformer is, what training actually does, why models hallucinate, where they fail. The highest-leverage region on the map, given how central AI is to both your work and your craft.",
+      "rank_note": null,
+      "anchor": "Once a transformer stops being a black box, you will reason about its limits the way you already reason about a subrogation workflow.",
+
+      "works": [
+        { "tier": "footpath", "format": "video",  "title": "Neural Networks",                                "subtitle": "video series",         "authors": ["3Blue1Brown / Grant Sanderson"], "year": null, "url": null, "description": "The single best intuition-builder for what a network \u2014 and a transformer \u2014 actually is. Watch before you read anything.", "is_start_here": true,  "seed_origin": "course" },
+        { "tier": "footpath", "format": "essay",  "title": "The Illustrated Transformer",                    "subtitle": null,                   "authors": ["Jay Alammar"],                   "year": null, "url": "https://jalammar.github.io/illustrated-transformer/", "description": "The diagram that made the architecture click for a generation of engineers.", "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "ridge",    "format": "course", "title": "Neural Networks: Zero to Hero",                  "subtitle": "video course",         "authors": ["Andrej Karpathy"],               "year": null, "url": null, "description": "You code a working language model from nothing. The 'Let's build GPT' lecture is built for someone who already programs.", "is_start_here": false, "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book",   "title": "Why Machines Learn",                             "subtitle": "The Elegant Maths Behind Modern AI", "authors": ["Anil Ananthaswamy"], "year": 2024, "url": null, "description": "The elegant mathematics behind machine learning, written for the curious non-specialist.", "is_start_here": false, "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book",   "title": "The Alignment Problem",                          "subtitle": null,                   "authors": ["Brian Christian"],               "year": 2020, "url": null, "description": "What models do, why they go wrong, why that is hard to fix \u2014 the critical, humane companion to the technical material.", "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "summit",   "format": "book",   "title": "Build a Large Language Model (From Scratch)",    "subtitle": null,                   "authors": ["Sebastian Raschka"],             "year": 2024, "url": null, "description": "A full LLM implemented step by step \u2014 the most thorough hands-on path to genuine understanding.", "is_start_here": false, "seed_origin": "course" },
+        { "tier": "summit",   "format": "book",   "title": "Understanding Deep Learning",                    "subtitle": null,                   "authors": ["Simon J. D. Prince"],            "year": 2023, "url": "https://udlbook.github.io/udlbook/", "description": "A modern, beautifully illustrated textbook, if you want the whole field laid out.", "is_start_here": false, "seed_origin": "course" }
+      ],
+
+      "articles": [
+        { "format": "essay", "title": "The Bitter Lesson",                              "authors": ["Rich Sutton"],   "year": 2019, "source_name": "incompleteideas.net", "url": "http://www.incompleteideas.net/IncIdeas/BitterLesson.html", "description": "A two-page argument, and the single most-cited idea in modern AI: general methods that scale with computation keep beating human-crafted cleverness. One coffee's length.", "seed_origin": "dispatch" },
+        { "format": "essay", "title": "Mapping the Mind of a Large Language Model",    "authors": ["Anthropic"],     "year": 2024, "source_name": "Anthropic",          "url": "https://www.anthropic.com/news/mapping-mind-language-model", "description": "What researchers actually found when they looked inside a deployed model \u2014 millions of human-interpretable 'features.' The black box, genuinely opened a crack.", "seed_origin": "dispatch" }
+      ],
+
+      "feeds": [
+        { "name": "Latent Space",      "type": "rss",    "kind": "substack",  "url": "https://www.latent.space/feed",                  "seed_origin": "dispatch" },
+        { "name": "Simon Willison",    "type": "rss",    "kind": "blog",      "url": "https://simonwillison.net/atom/everything/",     "seed_origin": "dispatch" },
+        { "name": "Import AI",         "type": "rss",    "kind": "substack",  "url": "https://importai.substack.com/feed",             "seed_origin": "dispatch" },
+        { "name": "Ahead of AI",       "type": "rss",    "kind": "substack",  "url": "https://magazine.sebastianraschka.com/feed",     "seed_origin": "dispatch" },
+        { "name": "r/LocalLLaMA",      "type": "reddit", "kind": "subreddit", "url": "https://www.reddit.com/r/LocalLLaMA/.rss",       "seed_origin": "dispatch" },
+        { "name": "r/MachineLearning", "type": "reddit", "kind": "subreddit", "url": "https://www.reddit.com/r/MachineLearning/.rss",  "seed_origin": "dispatch" }
+      ],
+
+      "extra_feeds": [
+        { "name": "Interconnects",       "type": "rss", "kind": "substack", "url": "https://www.interconnects.ai/feed",  "notes": "Nathan Lambert \u2014 sharp technical writing on open models, RLHF, and policy.",   "seed_origin": "addition" },
+        { "name": "One Useful Thing",    "type": "rss", "kind": "substack", "url": "https://www.oneusefulthing.org/feed", "notes": "Ethan Mollick \u2014 practical AI for knowledge work; written for the PM angle.",   "seed_origin": "addition" },
+        { "name": "AI Snake Oil",        "type": "rss", "kind": "substack", "url": "https://www.aisnakeoil.com/feed",     "notes": "Narayanan & Kapoor (Princeton) \u2014 rigorous, skeptical; the hype counterweight.", "seed_origin": "addition" },
+        { "name": "Chip Huyen's blog",   "type": "rss", "kind": "blog",     "url": "https://huyenchip.com/feed.xml",      "notes": "AI engineering and ML systems, for the builder side.",                              "seed_origin": "addition" }
+      ]
+    },
+
+    {
+      "ordinal": 2,
+      "name": "Mathematics",
+      "qualifier": "as an aesthetic object",
+      "why": "This region is already hiding inside what you love. Borges is set theory and the infinite; Piranesi is recursion and impossible structure; Escher is symmetry and the strange loop. You have been circling mathematics through fiction for years. This path follows the thread back to its source \u2014 and I think you will find it beautiful rather than dutiful.",
+      "rank_note": null,
+      "anchor": "This is the one region whose entry point I would press on you hardest. It connects straight to your aesthetic compass.",
+
+      "works": [
+        { "tier": "footpath", "format": "book", "title": "The Unimaginable Mathematics of Borges' Library of Babel", "authors": ["William Goldbloom Bloch"], "year": 2008, "url": null, "description": "A whole book on the mathematics inside a single Borges story. Your exact doorway \u2014 begin in territory you already love.", "is_start_here": true,  "seed_origin": "course" },
+        { "tier": "footpath", "format": "book", "title": "Mathematics: A Very Short Introduction",                  "authors": ["Timothy Gowers"],          "year": 2002, "url": null, "description": "Compact, serious, and genuinely about what mathematics is \u2014 by a Fields medallist.",                                       "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "ridge",    "format": "book", "title": "G\u00f6del, Escher, Bach: An Eternal Golden Braid",        "authors": ["Douglas Hofstadter"],      "year": 1979, "url": null, "description": "Recursion, strange loops, self-reference \u2014 Escher and Bach woven through G\u00f6del. Practically built for your aesthetic.", "is_start_here": false, "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book", "title": "Everything and More: A Compact History of Infinity",      "authors": ["David Foster Wallace"],    "year": 2003, "url": null, "description": "Cantor and the transfinite, written by a novelist. Infinity treated as literature.",                                            "is_start_here": false, "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book", "title": "The Mystery of the Aleph",                                "authors": ["Amir D. Aczel"],           "year": 2000, "url": null, "description": "Cantor, infinity, and its strange brush with mysticism and the Kabbalah \u2014 dark and surreal in the way you like.",         "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "summit",   "format": "book", "title": "A Mathematician's Apology",                               "authors": ["G. H. Hardy"],             "year": 1940, "url": null, "description": "Short, melancholy, and unrepentant \u2014 mathematical beauty defended as an end in itself.",                                  "is_start_here": false, "seed_origin": "course" },
+        { "tier": "summit",   "format": "book", "title": "The Shape of Space",                                      "authors": ["Jeffrey R. Weeks"],        "year": 2001, "url": null, "description": "An accessible path into topology \u2014 the mathematics of impossible architecture, which is to say, of Piranesi.",            "is_start_here": false, "seed_origin": "course" }
+      ],
+
+      "articles": [
+        { "format": "essay", "title": "How Can Infinity Come in Many Sizes?",                                       "authors": ["Quanta Magazine"], "year": 2026, "source_name": "Quanta Magazine", "url": "https://www.quantamagazine.org/how-can-infinity-come-in-many-sizes-20260223/",          "description": "A visual, interactive walkthrough of Cantor's diagonal argument \u2014 you watch a larger infinity get constructed in front of you. Pure Borges, made rigorous.", "seed_origin": "dispatch" },
+        { "format": "essay", "title": "A New Bridge Links the Strange Math of Infinity to Computer Science",        "authors": ["Quanta Magazine"], "year": 2025, "source_name": "Quanta Magazine", "url": "https://www.quantamagazine.org/a-new-bridge-links-the-strange-math-of-infinity-to-computer-science-20251121/", "description": "How the most esoteric corner of set theory turns out to speak the concrete language of algorithms \u2014 a quiet passage between this region and AI.",     "seed_origin": "dispatch" }
+      ],
+
+      "feeds": [
+        { "name": "Quanta Magazine", "type": "rss",    "kind": "magazine",         "url": "https://www.quantamagazine.org/feed/", "seed_origin": "dispatch" },
+        { "name": "Terence Tao",     "type": "rss",    "kind": "blog",             "url": "https://terrytao.wordpress.com/feed/", "seed_origin": "dispatch" },
+        { "name": "3Blue1Brown",     "type": "rss",    "kind": "youtube_channel", "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw", "seed_origin": "dispatch" },
+        { "name": "r/math",          "type": "reddit", "kind": "subreddit",        "url": "https://www.reddit.com/r/math/.rss",   "seed_origin": "dispatch" }
+      ],
+
+      "extra_feeds": [
+        { "name": "The Endeavour",       "type": "rss", "kind": "blog", "url": "https://www.johndcook.com/blog/feed/",                "notes": "John D. Cook \u2014 short, frequent posts on applied math, probability, computation.", "seed_origin": "addition" },
+        { "name": "Math3ma",             "type": "rss", "kind": "blog", "url": "https://www.math3ma.com/feed.xml",                    "notes": "Tai-Danae Bradley \u2014 category theory and the math behind ML, elegantly written.",   "seed_origin": "addition" },
+        { "name": "Quomodocumque",       "type": "rss", "kind": "blog", "url": "https://quomodocumque.wordpress.com/feed/",           "notes": "Jordan Ellenberg \u2014 a working mathematician's blog; he wrote How Not to Be Wrong.", "seed_origin": "addition" }
+      ]
+    },
+
+    {
+      "ordinal": 3,
+      "name": "Probability & Risk",
+      "qualifier": "the spine of your profession",
+      "why": "Insurance is, at its mathematical core, applied probability \u2014 risk pooling, expected value, tail events, adverse selection. Your analytical work shows up as process and requirements analysis, rarely as quantitative risk reasoning. Learning to think in distributions rather than point estimates would deepen the subrogation work and sharpen the claims-audit app, which is fundamentally a question about base rates and anomalies. It also follows naturally from Mathematics.",
+      "rank_note": "Third by priority \u2014 highest-leverage of the remaining five.",
+      "anchor": null,
+
+      "works": [
+        { "tier": "footpath", "format": "book", "title": "The Drunkard's Walk", "subtitle": "How Randomness Rules Our Lives", "authors": ["Leonard Mlodinow"], "year": 2008, "url": null, "description": "How randomness quietly shapes a life \u2014 accessible, and a gentle recalibration of intuition.", "is_start_here": false, "seed_origin": "course" },
+        { "tier": "footpath", "format": "book", "title": "Naked Statistics",   "subtitle": null,                              "authors": ["Charles Wheelan"],   "year": 2013, "url": null, "description": "Statistics stripped of dread; the working intuitions, minus the apparatus.",            "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "ridge",    "format": "book", "title": "Against the Gods",   "subtitle": "The Remarkable Story of Risk",   "authors": ["Peter L. Bernstein"], "year": 1996, "url": null, "description": "The history of risk, probability, and insurance itself. Essentially required reading for your field \u2014 and a genuinely good story.", "is_start_here": true,  "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book", "title": "Fooled by Randomness", "subtitle": null,                            "authors": ["Nassim Nicholas Taleb"], "year": 2001, "url": null, "description": "Tail risk and the limits of prediction \u2014 directly relevant to underwriting and claims.", "is_start_here": false, "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book", "title": "The Black Swan",     "subtitle": null,                            "authors": ["Nassim Nicholas Taleb"], "year": 2007, "url": null, "description": "Tail risk extended: how the highest-impact events come from outside the model. Pair with Fooled by Randomness.", "is_start_here": false, "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book", "title": "How to Measure Anything", "subtitle": null,                        "authors": ["Douglas W. Hubbard"], "year": 2007, "url": null, "description": "Quantifying uncertainty even when it seems impossible. Immediately useful for the audit application and your BA work.", "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "summit",   "format": "book", "title": "The Theory That Would Not Die", "subtitle": null,                  "authors": ["Sharon Bertsch McGrayne"], "year": 2011, "url": null, "description": "The long, embattled history of Bayesian reasoning \u2014 how to update belief in the face of evidence.", "is_start_here": false, "seed_origin": "course" },
+        { "tier": "summit",   "format": "book", "title": "Statistical Rethinking",        "subtitle": null,                  "authors": ["Richard McElreath"],         "year": 2015, "url": null, "description": "A rigorous, humane, code-driven course in Bayesian thinking \u2014 for an analyst who already programs.", "is_start_here": false, "seed_origin": "course" }
+      ],
+
+      "articles": [
+        { "format": "reference", "title": "Seeing Theory",                              "authors": ["Daniel Kunin et al."], "year": 2016, "source_name": "Brown University", "url": "https://seeing-theory.brown.edu/",      "description": "An interactive visual course in probability and statistics \u2014 drag a prior, watch the posterior shift, see a sample mean converge. Built for someone who already thinks in dashboards.", "seed_origin": "dispatch" },
+        { "format": "essay",     "title": "Predicting the Future with Bayes' Theorem", "authors": ["Farnam Street"],       "year": null, "source_name": "Farnam Street",   "url": "https://fs.blog/bayes-theorem/",        "description": "Bayesian updating reframed as a practical rule of thumb: weigh the old belief against the new evidence, instead of clinging to one or lurching to the other.",                                "seed_origin": "dispatch" }
+      ],
+
+      "feeds": [
+        { "name": "Statistical Modeling (Gelman)", "type": "rss",    "kind": "blog",      "url": "https://statmodeling.stat.columbia.edu/feed/", "seed_origin": "dispatch" },
+        { "name": "r/statistics",                  "type": "reddit", "kind": "subreddit", "url": "https://www.reddit.com/r/statistics/.rss",     "seed_origin": "dispatch" }
+      ],
+
+      "extra_feeds": [
+        { "name": "Count Bayesie",          "type": "rss", "kind": "blog",     "url": "https://www.countbayesie.com/blog?format=rss", "notes": "Will Kurt \u2014 genuinely fun, intuition-first probability essays.",                   "seed_origin": "addition" },
+        { "name": "Probably Overthinking It","type": "rss", "kind": "substack", "url": "https://allendowney.substack.com/feed",        "notes": "Allen Downey \u2014 applied stats, and the misuse of it.",                                "seed_origin": "addition" },
+        { "name": "FlowingData",            "type": "rss", "kind": "blog",     "url": "https://flowingdata.com/feed/",                "notes": "Nathan Yau \u2014 data visualization done beautifully; pairs with your dashboard work.",   "seed_origin": "addition" },
+        { "name": "The Pudding",            "type": "rss", "kind": "magazine", "url": "https://pudding.cool/rss.xml",                 "notes": "Visual essays \u2014 data journalism with a literary touch.",                              "seed_origin": "addition" }
+      ]
+    },
+
+    {
+      "ordinal": 4,
+      "name": "Empirical Sciences & the Mind",
+      "qualifier": "a counterweight to Jung",
+      "why": "Your psychology is Jungian \u2014 symbol, archetype, depth. A powerful interpretive lens, but not an empirical one. The cognitive science of religion and myth is its counterweight, not its replacement: a second instrument to triangulate with. Pair it with physics, evolution, and the science of the brain, and you gain a whole register of explanation your map currently lacks.",
+      "rank_note": "Fourth by priority \u2014 the largest worldview shift on the map.",
+      "anchor": null,
+
+      "works": [
+        { "tier": "footpath", "format": "book", "title": "Seven Brief Lessons on Physics", "authors": ["Carlo Rovelli"],     "year": 2014, "url": null, "description": "Physics written as lyric essay \u2014 the prose sensibility you would recognise from your literary shelf.",   "is_start_here": false, "seed_origin": "course" },
+        { "tier": "footpath", "format": "book", "title": "Your Inner Fish",                "authors": ["Neil Shubin"],       "year": 2008, "url": null, "description": "Evolution made vivid and personal \u2014 deep time told through your own body.",                            "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "ridge",    "format": "book", "title": "Religion Explained",             "authors": ["Pascal Boyer"],      "year": 2001, "url": null, "description": "The foundational cognitive-science account of why human minds generate gods and myths \u2014 the direct, respectful counterweight to Jung.", "is_start_here": true, "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book", "title": "Thinking, Fast and Slow",        "authors": ["Daniel Kahneman"],   "year": 2011, "url": null, "description": "The two-system model of the mind \u2014 the base layer beneath everything else in this region.",            "is_start_here": false, "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book", "title": "Behave",                         "authors": ["Robert Sapolsky"],   "year": 2017, "url": null, "description": "An enormous, brilliant synthesis of why humans act as they do \u2014 from a single neuron out to whole cultures.", "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "summit",   "format": "book", "title": "The Experience Machine",         "authors": ["Andy Clark"],        "year": 2023, "url": null, "description": "Predictive processing \u2014 the brain as an organ that hallucinates a controlled version of reality. Strange and beautiful; very much your register.", "is_start_here": false, "seed_origin": "course" },
+        { "tier": "summit",   "format": "book", "title": "Why Buddhism Is True",           "authors": ["Robert Wright"],     "year": 2017, "url": null, "description": "A bridge between cognitive science and contemplative thought \u2014 and a quiet door into Region VII.",         "is_start_here": false, "seed_origin": "course" }
+      ],
+
+      "articles": [
+        { "format": "essay", "title": "Can religion be based on ritual practice without belief?", "authors": ["Aeon"], "year": null, "source_name": "Aeon", "url": "https://aeon.co/essays/can-religion-be-based-on-ritual-practice-without-belief", "description": "A clear tour of the cognitive science of religion \u2014 how evolved mental machinery, more than doctrine, shapes what humans believe and do. The empirical lens on myth, in essay form.", "seed_origin": "dispatch" }
+      ],
+
+      "feeds": [
+        { "name": "Aeon",             "type": "rss",    "kind": "magazine",  "url": "https://aeon.co/feed.rss",                  "seed_origin": "dispatch" },
+        { "name": "Psyche",           "type": "rss",    "kind": "magazine",  "url": "https://psyche.co/feed.rss",                "seed_origin": "dispatch" },
+        { "name": "Astral Codex Ten", "type": "rss",    "kind": "substack",  "url": "https://www.astralcodexten.com/feed",       "seed_origin": "dispatch" },
+        { "name": "r/cogsci",         "type": "reddit", "kind": "subreddit", "url": "https://www.reddit.com/r/cogsci/.rss",      "seed_origin": "dispatch" }
+      ],
+
+      "extra_feeds": [
+        { "name": "The Marginalian",       "type": "rss", "kind": "blog",     "url": "https://www.themarginalian.org/feed/",         "notes": "Maria Popova \u2014 interdisciplinary essays on mind, art, and meaning; very much your sensibility.", "seed_origin": "addition" },
+        { "name": "Experimental History",  "type": "rss", "kind": "substack", "url": "https://www.experimental-history.com/feed",    "notes": "Adam Mastroianni \u2014 a psychologist's witty, contrarian essays on the mind and on science itself.", "seed_origin": "addition" },
+        { "name": "Nautilus",              "type": "rss", "kind": "magazine", "url": "https://nautil.us/feed/",                      "notes": "Long-form science writing with a literary touch.",                                                  "seed_origin": "addition" },
+        { "name": "Mind Hacks",            "type": "rss", "kind": "blog",     "url": "https://mindhacks.com/feed/",                  "notes": "Vaughan Bell & Tom Stafford \u2014 psychology and neuroscience, plainly explained.",                 "seed_origin": "addition" }
+      ]
+    },
+
+    {
+      "ordinal": 5,
+      "name": "Economics",
+      "qualifier": "the engine beneath the symptoms",
+      "why": "You read the symptoms fluently \u2014 comparative inequality, OPEC dynamics, low-cost-carrier arbitrage \u2014 without the engine underneath. This region connects insurance, geopolitics, and budget travel into a single working system: why some countries you visit are poor, why cheap flights can exist at all, how risk markets function. Ranked here, below cognitive science, only because you already navigate its surface with skill.",
+      "rank_note": "Fifth by priority \u2014 deepening, more than opening.",
+      "anchor": null,
+
+      "works": [
+        { "tier": "footpath", "format": "book", "title": "Naked Economics",            "authors": ["Charles Wheelan"], "year": 2002, "url": null, "description": "The readable orientation \u2014 the companion volume to his statistics book.",                            "is_start_here": false, "seed_origin": "course" },
+        { "tier": "footpath", "format": "book", "title": "The Undercover Economist",   "authors": ["Tim Harford"],     "year": 2005, "url": null, "description": "Everyday life \u2014 a coffee, a rent, a queue \u2014 read as an economics lesson.",                       "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "ridge",    "format": "book", "title": "Economics: The User's Guide", "authors": ["Ha-Joon Chang"],  "year": 2014, "url": null, "description": "Deliberately pluralist \u2014 it teaches the competing schools rather than a single orthodoxy. The honest first map.", "is_start_here": true,  "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book", "title": "Why Nations Fail",            "authors": ["Daron Acemoglu", "James Robinson"], "year": 2012, "url": null, "description": "Why institutions make some countries rich and others poor \u2014 the answer to a question your travels keep raising.", "is_start_here": false, "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book", "title": "The Ascent of Money",         "authors": ["Niall Ferguson"], "year": 2008, "url": null, "description": "A financial history of the world \u2014 and it pairs naturally with the risk region.",                          "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "summit",   "format": "book", "title": "Poor Economics",              "authors": ["Abhijit Banerjee", "Esther Duflo"], "year": 2011, "url": null, "description": "Development economics built from careful, granular field experiments rather than grand theory.",              "is_start_here": false, "seed_origin": "course" },
+        { "tier": "summit",   "format": "book", "title": "Capital in the Twenty-First Century", "authors": ["Thomas Piketty"], "year": 2013, "url": null, "description": "The long, data-heavy argument on inequality \u2014 a genuine stretch read for when the appetite is there.",       "is_start_here": false, "seed_origin": "course" }
+      ],
+
+      "articles": [
+        { "format": "essay", "title": "The Use of Knowledge in Society",                       "authors": ["F. A. Hayek"], "year": 1945, "source_name": "Econlib", "url": "https://www.econlib.org/library/Essays/hykKnw.html",                   "description": "A landmark short essay: how a price system coordinates dispersed knowledge that no single mind could ever gather. Dense but brief, and a true systems-thinker's text.", "seed_origin": "dispatch" },
+        { "format": "essay", "title": "Notes on Hayek's 'The Use of Knowledge in Society'",    "authors": ["Econlib"],     "year": null, "source_name": "Econlib", "url": "https://www.econlib.org/notes-on-hayeks-the-use-of-knowledge-in-society/", "description": "An annotated, reader-friendly companion that walks a first-time reader through the essay above, paragraph by paragraph.",                                                    "seed_origin": "dispatch" }
+      ],
+
+      "feeds": [
+        { "name": "Marginal Revolution", "type": "rss",    "kind": "blog",      "url": "https://marginalrevolution.com/feed",        "seed_origin": "dispatch" },
+        { "name": "Noahpinion",          "type": "rss",    "kind": "substack",  "url": "https://www.noahpinion.blog/feed",           "seed_origin": "dispatch" },
+        { "name": "r/AskEconomics",      "type": "reddit", "kind": "subreddit", "url": "https://www.reddit.com/r/AskEconomics/.rss", "seed_origin": "dispatch" }
+      ],
+
+      "extra_feeds": [
+        { "name": "Works in Progress",        "type": "rss", "kind": "magazine", "url": "https://www.worksinprogress.co/feed.xml",       "notes": "A beautiful magazine on science, progress, and why things do or don't improve.",                "seed_origin": "addition" },
+        { "name": "Apricitas Economics",      "type": "rss", "kind": "substack", "url": "https://www.apricitas.io/feed",                "notes": "Joseph Politano \u2014 chart-driven macro; pairs with your data interest.",                       "seed_origin": "addition" },
+        { "name": "The Conversable Economist","type": "rss", "kind": "blog",     "url": "https://conversableeconomist.com/feed/",       "notes": "Timothy Taylor \u2014 calm, clear explainers with no axe to grind.",                              "seed_origin": "addition" },
+        { "name": "Construction Physics",     "type": "rss", "kind": "substack", "url": "https://www.construction-physics.com/feed",    "notes": "Brian Potter \u2014 why building things is hard and expensive; quietly fascinating.",            "seed_origin": "addition" }
+      ]
+    },
+
+    {
+      "ordinal": 6,
+      "name": "Formal Philosophy",
+      "qualifier": "the scaffolding",
+      "why": "Borges and Jung have given you a real, informal philosophical fluency; this region supplies the scaffolding beneath it \u2014 epistemology, ethics as a structured field, the philosophy of mind. It also bridges the map: philosophy of mind sits beside Region I, logic beside Region II. Placed sixth because you can already think philosophically; this makes the moves explicit.",
+      "rank_note": "Sixth by priority \u2014 structure for fluency you already have.",
+      "anchor": null,
+
+      "works": [
+        { "tier": "footpath", "format": "book", "title": "The Problems of Philosophy", "authors": ["Bertrand Russell"], "year": 1912, "url": null, "description": "A short, lucid classic \u2014 the cleanest first map of the whole territory.",                       "is_start_here": false, "seed_origin": "course" },
+        { "tier": "footpath", "format": "book", "title": "Think",                      "authors": ["Simon Blackburn"],  "year": 1999, "url": null, "description": "Serious but welcoming, organised around the big questions rather than the big names.",            "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "ridge",    "format": "book", "title": "The Mind's I",              "authors": ["Douglas Hofstadter (ed.)", "Daniel Dennett (ed.)"], "year": 1981, "url": null, "description": "An anthology on mind, self, and consciousness \u2014 with Borges and Turing inside. Picks up exactly where G\u00f6del, Escher, Bach leaves off.", "is_start_here": true,  "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book", "title": "Justice: What's the Right Thing to Do?", "authors": ["Michael Sandel"], "year": 2009, "url": null, "description": "Ethics and political philosophy made concrete through hard cases \u2014 a frame for the geopolitics you already read.", "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "summit",   "format": "book",   "title": "The Conscious Mind",      "authors": ["David Chalmers"],   "year": 1996, "url": null, "description": "The 'hard problem' of consciousness \u2014 directly relevant to what a machine mind could, or could not, ever be.", "is_start_here": false, "seed_origin": "course" },
+        { "tier": "summit",   "format": "series", "title": "Very Short Introductions: targeted volumes", "authors": ["Oxford University Press"], "year": null, "url": null, "description": "Epistemology, Free Will, Ethics \u2014 single short volumes for whichever question takes hold of you.",          "is_start_here": false, "seed_origin": "course" }
+      ],
+
+      "articles": [
+        { "format": "essay",     "title": "The hard problem of consciousness is a distraction from the real one", "authors": ["Anil Seth"], "year": null, "source_name": "Aeon", "url": "https://aeon.co/essays/the-hard-problem-of-consciousness-is-a-distraction-from-the-real-one", "description": "A neuroscientist's case for explaining consciousness piece by piece, treating the brain as a 'prediction machine.' Bridges directly to Regions I and IV.", "seed_origin": "dispatch" },
+        { "format": "reference", "title": "Stanford Encyclopedia of Philosophy",                                  "authors": ["SEP"],       "year": null, "source_name": "SEP",  "url": "https://plato.stanford.edu/",                                                                       "description": "Not an article but the reference: free, peer-reviewed, authoritative entries on every philosophical topic. The place to follow any thread that catches you.",   "seed_origin": "dispatch" }
+      ],
+
+      "feeds": [
+        { "name": "Daily Nous",      "type": "rss",    "kind": "blog",      "url": "https://dailynous.com/feed/",                  "seed_origin": "dispatch" },
+        { "name": "3 Quarks Daily",  "type": "rss",    "kind": "blog",      "url": "https://3quarksdaily.com/feed",                "seed_origin": "dispatch" },
+        { "name": "r/askphilosophy", "type": "reddit", "kind": "subreddit", "url": "https://www.reddit.com/r/askphilosophy/.rss",  "seed_origin": "dispatch" }
+      ],
+
+      "extra_feeds": [
+        { "name": "The Splintered Mind", "type": "rss", "kind": "blog", "url": "https://schwitzsplinters.blogspot.com/feeds/posts/default", "notes": "Eric Schwitzgebel \u2014 a philosopher on consciousness, ethics, and the genuinely strange.", "seed_origin": "addition" },
+        { "name": "Crooked Timber",      "type": "rss", "kind": "blog", "url": "https://crookedtimber.org/feed/",                            "notes": "Long-running group blog, philosophy meeting politics and culture.",                          "seed_origin": "addition" },
+        { "name": "Brains Blog",         "type": "rss", "kind": "blog", "url": "https://philosophyofbrains.com/feed",                        "notes": "The philosophy-of-mind and cognitive-science community's hub.",                              "seed_origin": "addition" }
+      ]
+    },
+
+    {
+      "ordinal": 7,
+      "name": "Big History & Non-Western Thought",
+      "qualifier": "the enrichment course",
+      "why": "The enrichment region \u2014 and a direct doorway into the Indonesia trip, where animism, Hindu-Buddhist kingdoms, and Islam are layered into a single landscape. You have Moroccan and Islamic civilisation in depth, and you have invented an Andean culture; this widens the frame to the long human sweep and the thought-worlds east of the ones you know.",
+      "rank_note": "Seventh by priority \u2014 lighter in leverage, generous in reward.",
+      "anchor": "Begin with Origin Story, then turn the whole region toward Indonesia as the trip firms up.",
+
+      "works": [
+        { "tier": "footpath", "format": "book", "title": "Origin Story",         "subtitle": "A Big History of Everything", "authors": ["David Christian"], "year": 2018, "url": null, "description": "The big-history sweep \u2014 Big Bang to now \u2014 by the field's founder. The widest possible establishing shot.", "is_start_here": true,  "seed_origin": "course" },
+        { "tier": "footpath", "format": "book", "title": "What the Buddha Taught", "subtitle": null,                          "authors": ["Walpola Rahula"], "year": 1959, "url": null, "description": "The clearest, most economical introduction to Buddhist thought there is.",                                   "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "ridge",    "format": "book", "title": "The Dawn of Everything", "subtitle": null,                          "authors": ["David Graeber", "David Wengrow"], "year": 2021, "url": null, "description": "A radical re-reading of human history \u2014 irresistible for someone who builds civilisations of her own.", "is_start_here": false, "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book", "title": "The Path",               "subtitle": null,                          "authors": ["Michael Puett", "Christine Gross-Loh"], "year": 2016, "url": null, "description": "Chinese philosophy made accessible, drawn from Puett's well-known Harvard course.",                       "is_start_here": false, "seed_origin": "course" },
+        { "tier": "ridge",    "format": "book", "title": "Indonesia, Etc.",        "subtitle": "Exploring the Improbable Nation", "authors": ["Elizabeth Pisani"], "year": 2014, "url": null, "description": "A sharp, affectionate journalist's portrait of the improbable nation itself \u2014 read it before the trip.", "is_start_here": false, "seed_origin": "course" },
+
+        { "tier": "summit",   "format": "book", "title": "The Religion of Java",   "subtitle": null,                          "authors": ["Clifford Geertz"], "year": 1960, "url": null, "description": "The classic anthropological study of precisely that syncretic layering of animism, Hindu-Buddhist inheritance, and Islam.", "is_start_here": false, "seed_origin": "course" },
+        { "tier": "summit",   "format": "book", "title": "Indian Philosophy: A Very Short Introduction", "subtitle": null,    "authors": ["Sue Hamilton"],   "year": 2001, "url": null, "description": "A compact map of the Hindu philosophical tradition \u2014 the gateway to the Bhagavad Gita.",                "is_start_here": false, "seed_origin": "course" },
+        { "tier": "summit",   "format": "book", "title": "Bhagavad Gita",          "subtitle": null,                          "authors": ["Eknath Easwaran (translator)"], "year": null, "url": null, "description": "The central text of the Hindu tradition in a clear, readable rendering.",                                "is_start_here": false, "seed_origin": "course" }
+      ],
+
+      "articles": [
+        { "format": "essay", "title": "How to change the course of human history", "authors": ["David Graeber", "David Wengrow"], "year": 2018, "source_name": "Eurozine", "url": "https://www.eurozine.com/change-course-human-history/", "description": "The long essay that grew into The Dawn of Everything \u2014 the argument that inequality was never the inevitable price of civilisation, in compact, complete form.", "seed_origin": "dispatch" }
+      ],
+
+      "feeds": [
+        { "name": "ACOUP",                              "type": "rss",    "kind": "blog",      "url": "https://acoup.blog/feed/",                          "seed_origin": "dispatch" },
+        { "name": "History of Philosophy without any gaps", "type": "rss", "kind": "podcast", "url": "https://historyofphilosophy.net/rss.xml",            "seed_origin": "dispatch" },
+        { "name": "r/AskHistorians",                    "type": "reddit", "kind": "subreddit", "url": "https://www.reddit.com/r/AskHistorians/.rss",       "seed_origin": "dispatch" }
+      ],
+
+      "extra_feeds": [
+        { "name": "The Scholar's Stage", "type": "rss", "kind": "blog",     "url": "https://scholars-stage.org/feed/",     "notes": "Tanner Greer \u2014 essays on history, strategy, and Chinese thought; serves your non-Western interest directly.", "seed_origin": "addition" },
+        { "name": "Res Obscura",         "type": "rss", "kind": "substack", "url": "https://resobscura.substack.com/feed", "notes": "Benjamin Breen \u2014 early-modern history, science and the strange, written with real style.",                  "seed_origin": "addition" },
+        { "name": "Age of Invention",    "type": "rss", "kind": "substack", "url": "https://www.ageofinvention.xyz/feed",  "notes": "Anton Howes \u2014 the history of innovation and how progress actually happened.",                                "seed_origin": "addition" }
+      ]
+    }
+  ],
+
+  "cross_cutting_feeds": [
+    { "name": "Noema",     "type": "rss", "kind": "magazine", "url": "https://www.noemamag.com/feed/", "notes": "Philosophy, technology, and global thought, often non-Western. Spans regions I, IV, VI, VII.", "seed_origin": "addition" },
+    { "name": "Asterisk",  "type": "rss", "kind": "magazine", "url": "https://asteriskmag.com/rss",    "notes": "Rigorous quarterly essays across science, economics, and risk. Spans regions III, IV, V.",      "seed_origin": "addition" }
+  ]
+}
