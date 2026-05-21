@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
@@ -38,7 +38,11 @@ def import_seed(body: ImportRequest, session: Session = Depends(get_session)) ->
     if body.mode not in ("merge", "replace"):
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail={"title": "Validation Error", "status": 422, "detail": "mode must be 'merge' or 'replace'"},
+            detail={
+                "title": "Validation Error",
+                "status": 422,
+                "detail": "mode must be 'merge' or 'replace'",
+            },
         )
     if body.mode == "replace":
         # Truncate all data tables except migrations
@@ -66,7 +70,7 @@ def export_data(session: Session = Depends(get_session)) -> JSONResponse:
         return [r.model_dump() for r in rows]
 
     payload = {
-        "exported_at": datetime.now(timezone.utc).isoformat(),
+        "exported_at": datetime.now(UTC).isoformat(),
         "regions": _rows(Region),
         "tags": _rows(Tag),
         "works": _rows(Work),

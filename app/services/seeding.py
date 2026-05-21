@@ -1,7 +1,7 @@
 """Idempotent seed loader for seed.json."""
 
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from sqlmodel import Session, select
@@ -30,7 +30,7 @@ def load_seed(path: Path = SEED_PATH) -> dict:
 
 
 def _now() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 def _upsert_region(session: Session, data: dict) -> Region:

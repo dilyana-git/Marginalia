@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlmodel import Field, SQLModel
 
@@ -19,5 +19,5 @@ class Feed(SQLModel, table=True):
     last_fetched_at: datetime | None = None
     last_status: str | None = None
     seed_origin: SeedOrigin = Field(default=SeedOrigin.manual)
-    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))

@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi import APIRouter, Depends, HTTPException, status
 
 from app.deps import require_api_key
 
@@ -14,11 +14,11 @@ def _load() -> dict:
     try:
         with open(_SEED_PATH, encoding="utf-8") as f:
             return json.load(f)
-    except FileNotFoundError:
+    except FileNotFoundError as exc:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail={"title": "Unavailable", "status": 503, "detail": "seed.json not found."},
-        )
+        ) from exc
 
 
 @router.get("")

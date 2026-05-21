@@ -1,4 +1,4 @@
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 
 from sqlalchemy import Column
 from sqlalchemy.types import JSON
@@ -24,14 +24,14 @@ class Work(SQLModel, table=True):
     description: str | None = None
     notes: str | None = None
     status: WorkStatus = Field(default=WorkStatus.want, sa_column_kwargs={"index": True})
-    date_added: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    date_added: datetime = Field(default_factory=lambda: datetime.now(UTC))
     date_started: date | None = None
     date_finished: date | None = None
     rating: int | None = None
     is_start_here: bool = Field(default=False)
     seed_origin: SeedOrigin = Field(default=SeedOrigin.manual)
-    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
 
 class WorkTag(SQLModel, table=True):

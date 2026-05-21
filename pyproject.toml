@@ -41,7 +41,7 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
-ignore = ["B008"]
+ignore = ["B008", "UP042"]  # UP042: project uses str,Enum pattern for SQLModel compat
 
 [tool.ruff.lint.isort]
 known-first-party = ["app"]

@@ -12,7 +12,9 @@ log = get_logger("newsletter.sender")
 
 def send_email(subject: str, html: str, plaintext: str, recipient: str) -> None:
     if not all([settings.SMTP_HOST, settings.SMTP_USER, settings.SMTP_PASS]):
-        raise RuntimeError("SMTP credentials not configured (SMTP_HOST, SMTP_USER, SMTP_PASS required)")
+        raise RuntimeError(
+            "SMTP credentials not configured (SMTP_HOST, SMTP_USER, SMTP_PASS required)"
+        )
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject

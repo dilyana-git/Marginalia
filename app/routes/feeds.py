@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlmodel import Session, select
@@ -45,7 +45,7 @@ def list_feeds(
 
 @router.post("", response_model=FeedRead, status_code=status.HTTP_201_CREATED)
 def create_feed(body: FeedCreate, session: Session = Depends(get_session)) -> FeedRead:
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     feed = Feed(**body.model_dump(), created_at=now, updated_at=now)
     session.add(feed)
     session.commit()
@@ -70,7 +70,7 @@ def update_feed(
         raise _not_found(feed_id)
     for field, value in body.model_dump(exclude_unset=True).items():
         setattr(feed, field, value)
-    feed.updated_at = datetime.now(timezone.utc)
+    feed.updated_at = datetime.now(UTC)
     session.add(feed)
     session.commit()
     session.refresh(feed)
@@ -109,8 +109,8 @@ def check_feed(feed_id: int, session: Session = Depends(get_session)) -> FeedChe
         errors.append(str(exc))
         feed.last_status = f"error: {exc}"
 
-    feed.last_fetched_at = datetime.now(timezone.utc)
-    feed.updated_at = datetime.now(timezone.utc)
+    feed.last_fetched_at = datetime.now(UTC)
+    feed.updated_at = datetime.now(UTC)
     session.add(feed)
     session.commit()
 

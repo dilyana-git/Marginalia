@@ -1,4 +1,4 @@
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 
 from sqlmodel import Field, SQLModel
 
@@ -15,8 +15,8 @@ class JournalEntry(SQLModel, table=True):
     body: str
     kind: JournalKind = Field(default=JournalKind.reflection, sa_column_kwargs={"index": True})
     page_or_location: str | None = None
-    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
 
 class JournalTag(SQLModel, table=True):

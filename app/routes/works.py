@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlmodel import Session, select
@@ -59,7 +59,7 @@ def list_works(
 
 @router.post("", response_model=WorkRead, status_code=status.HTTP_201_CREATED)
 def create_work(body: WorkCreate, session: Session = Depends(get_session)) -> WorkRead:
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     work = Work(
         **body.model_dump(exclude={"rating"}),
         rating=body.rating,
@@ -90,7 +90,7 @@ def update_work(
         raise _not_found(work_id)
     for field, value in body.model_dump(exclude_unset=True).items():
         setattr(work, field, value)
-    work.updated_at = datetime.now(timezone.utc)
+    work.updated_at = datetime.now(UTC)
     session.add(work)
     session.commit()
     session.refresh(work)
@@ -114,7 +114,7 @@ def patch_work_status(
     if not work:
         raise _not_found(work_id)
     work.status = body.status
-    work.updated_at = datetime.now(timezone.utc)
+    work.updated_at = datetime.now(UTC)
     session.add(work)
     session.commit()
     session.refresh(work)
@@ -122,11 +122,15 @@ def patch_work_status(
 
 
 @router.get("/{work_id}/journal", response_model=list[JournalEntryRead])
-def get_work_journal(work_id: int, session: Session = Depends(get_session)) -> list[JournalEntryRead]:
+def get_work_journal(
+    work_id: int, session: Session = Depends(get_session)
+) -> list[JournalEntryRead]:
     work = session.get(Work, work_id)
     if not work:
         raise _not_found(work_id)
     entries = session.exec(
-        select(JournalEntry).where(JournalEntry.work_id == work_id).order_by(JournalEntry.date.desc())  # type: ignore[attr-defined]
+        select(JournalEntry)
+        .where(JournalEntry.work_id == work_id)
+        .order_by(JournalEntry.date.desc())  # type: ignore[attr-defined]
     ).all()
     return [JournalEntryRead.model_validate(e, from_attributes=True) for e in entries]

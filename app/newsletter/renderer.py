@@ -1,6 +1,6 @@
 """Render newsletter as HTML and plain-text."""
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from app.models import Feed, NewsletterItem, Region
 
@@ -12,9 +12,18 @@ _LIGHT_BORDER = "#E8E3DC"
 
 
 def _html_item(item: NewsletterItem, blurb: str | None, is_highlight: bool) -> str:
-    highlight_bar = f'style="border-left: 3px solid {_TEAL}; padding-left: 12px;"' if is_highlight else ""
-    blurb_html = f'<p style="color:{_MID};font-size:13px;margin:4px 0 0;">{blurb}</p>' if blurb else ""
-    link_html = f'<a href="{item.link}" style="color:{_TEAL};text-decoration:none;font-weight:600;">{item.title}</a>' if item.link else f'<strong>{item.title}</strong>'
+    highlight_bar = (  # noqa: E501
+        f'style="border-left: 3px solid {_TEAL}; padding-left: 12px;"' if is_highlight else ""
+    )
+    blurb_html = (
+        f'<p style="color:{_MID};font-size:13px;margin:4px 0 0;">{blurb}</p>' if blurb else ""
+    )
+    link_html = (
+        f'<a href="{item.link}" style="color:{_TEAL};text-decoration:none;font-weight:600;">'
+        f"{item.title}</a>"
+        if item.link
+        else f"<strong>{item.title}</strong>"
+    )
     return f"""
     <div {highlight_bar} style="margin-bottom:16px;">
       <p style="margin:0;">{link_html}</p>
@@ -32,7 +41,7 @@ def render_html(
     intro: str,
     run_date: datetime | None = None,
 ) -> str:
-    date_str = (run_date or datetime.now(timezone.utc)).strftime("%A, %-d %B %Y")
+    date_str = (run_date or datetime.now(UTC)).strftime("%A, %-d %B %Y")
 
     # Group by region (None = cross-cutting)
     by_region: dict[str, list[NewsletterItem]] = {}
@@ -63,16 +72,33 @@ def render_html(
         items_html = "".join(
             _html_item(i, blurbs.get(i.id), i.id in highlight_ids) for i in section_items  # type: ignore[arg-type]
         )
+        h2_style = (  # noqa: E501
+            f"color:{_TEAL};border-bottom:1px solid {_LIGHT_BORDER};"
+            "padding-bottom:6px;font-size:16px;"
+        )
         sections_html += f"""
-        <h2 style="color:{_TEAL};border-bottom:1px solid {_LIGHT_BORDER};padding-bottom:6px;font-size:16px;">{section_name}</h2>
+        <h2 style="{h2_style}">{section_name}</h2>
         {items_html}"""
 
-    intro_html = f'<p style="color:{_DARK};font-size:15px;line-height:1.6;margin-bottom:24px;">{intro}</p>' if intro else ""
+    intro_html = (
+        f'<p style="color:{_DARK};font-size:15px;line-height:1.6;margin-bottom:24px;">'
+        f"{intro}</p>"
+        if intro
+        else ""
+    )
 
+    body_style = (
+        f"background:{_CREAM};font-family:Georgia,serif;color:{_DARK};"
+        "max-width:640px;margin:0 auto;padding:24px;"
+    )
+    footer_style = (
+        f"border-top:1px solid {_LIGHT_BORDER};margin-top:32px;"
+        f"padding-top:12px;font-size:11px;color:{_MID};"
+    )
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><title>Marginalia — {date_str}</title></head>
-<body style="background:{_CREAM};font-family:Georgia,serif;color:{_DARK};max-width:640px;margin:0 auto;padding:24px;">
+<body style="{body_style}">
   <header style="border-bottom:2px solid {_TEAL};margin-bottom:24px;padding-bottom:12px;">
     <h1 style="color:{_TEAL};font-size:22px;margin:0;">Marginalia</h1>
     <p style="color:{_MID};font-size:13px;margin:4px 0 0;">{date_str}</p>
@@ -80,7 +106,7 @@ def render_html(
   {intro_html}
   {highlights_html}
   {sections_html}
-  <footer style="border-top:1px solid {_LIGHT_BORDER};margin-top:32px;padding-top:12px;font-size:11px;color:{_MID};">
+  <footer style="{footer_style}">
     Your personal reading digest. {len(items)} items from {len(by_region)} regions.
   </footer>
 </body>
@@ -96,7 +122,7 @@ def render_plaintext(
     intro: str,
     run_date: datetime | None = None,
 ) -> str:
-    date_str = (run_date or datetime.now(timezone.utc)).strftime("%A, %-d %B %Y")
+    date_str = (run_date or datetime.now(UTC)).strftime("%A, %-d %B %Y")
     lines = [f"MARGINALIA — {date_str}", "=" * 50, ""]
 
     if intro:

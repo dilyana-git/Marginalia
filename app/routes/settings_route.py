@@ -1,4 +1,3 @@
-from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends
 from sqlmodel import Session, select

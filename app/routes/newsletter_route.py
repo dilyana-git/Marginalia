@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlmodel import Session, select
@@ -48,7 +48,10 @@ def list_items(
     if date_from is not None:
         stmt = stmt.where(NewsletterItem.created_at >= date_from)
     stmt = stmt.order_by(NewsletterItem.created_at.desc()).offset(offset).limit(limit)  # type: ignore[attr-defined]
-    return [NewsletterItemRead.model_validate(ni, from_attributes=True) for ni in session.exec(stmt).all()]
+    return [
+        NewsletterItemRead.model_validate(ni, from_attributes=True)
+        for ni in session.exec(stmt).all()
+    ]
 
 
 @router.patch("/items/{item_id}", response_model=NewsletterItemRead)
@@ -59,7 +62,11 @@ def patch_item(
     if not item:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail={"title": "Not Found", "status": 404, "detail": f"NewsletterItem {item_id} not found."},
+            detail={
+                "title": "Not Found",
+                "status": 404,
+                "detail": f"NewsletterItem {item_id} not found.",
+            },
         )
 
     if body.status is not None:
@@ -76,9 +83,9 @@ def patch_item(
             region_id=body.save_as_work.get("region_id"),
             tier=WorkTier(tier_val) if isinstance(tier_val, str) else tier_val,
             seed_origin=SeedOrigin.manual,
-            date_added=datetime.now(timezone.utc),
-            created_at=datetime.now(timezone.utc),
-            updated_at=datetime.now(timezone.utc),
+            date_added=datetime.now(UTC),
+            created_at=datetime.now(UTC),
+            updated_at=datetime.now(UTC),
         )
         session.add(work)
         session.flush()

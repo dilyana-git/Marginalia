@@ -1,4 +1,4 @@
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlmodel import Session, select
@@ -15,7 +15,7 @@ router = APIRouter(prefix="/journal", tags=["journal"], dependencies=[Depends(re
 def _not_found(entry_id: int) -> HTTPException:
     return HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
-        detail={"title": "Not Found", "status": 404, "detail": f"Journal entry {entry_id} not found."},
+        detail={"title": "Not Found", "status": 404, "detail": f"Journal entry {entry_id} not found."},  # noqa: E501
     )
 
 
@@ -23,10 +23,8 @@ def _to_read(entry: JournalEntry, session: Session) -> JournalEntryRead:
     tag_ids = [jt.tag_id for jt in session.exec(
         select(JournalTag).where(JournalTag.entry_id == entry.id)
     ).all()]
-    return JournalEntryRead(
-        **JournalEntryRead.model_validate(entry, from_attributes=True).model_dump(exclude={"tag_ids"}),
-        tag_ids=tag_ids,
-    )
+    validated = JournalEntryRead.model_validate(entry, from_attributes=True)
+    return JournalEntryRead(**validated.model_dump(exclude={"tag_ids"}), tag_ids=tag_ids)
 
 
 def _sync_tags(session: Session, entry_id: int, tag_ids: list[int]) -> None:
@@ -75,8 +73,10 @@ def list_journal(
 
 
 @router.post("", response_model=JournalEntryRead, status_code=status.HTTP_201_CREATED)
-def create_entry(body: JournalEntryCreate, session: Session = Depends(get_session)) -> JournalEntryRead:
-    now = datetime.now(timezone.utc)
+def create_entry(
+    body: JournalEntryCreate, session: Session = Depends(get_session)
+) -> JournalEntryRead:
+    now = datetime.now(UTC)
     entry = JournalEntry(
         **body.model_dump(exclude={"tag_ids"}),
         created_at=now,
@@ -107,7 +107,7 @@ def update_entry(
         raise _not_found(entry_id)
     for field, value in body.model_dump(exclude_unset=True, exclude={"tag_ids"}).items():
         setattr(entry, field, value)
-    entry.updated_at = datetime.now(timezone.utc)
+    entry.updated_at = datetime.now(UTC)
     session.add(entry)
     session.flush()
     if body.tag_ids is not None:

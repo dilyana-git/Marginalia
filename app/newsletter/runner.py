@@ -1,6 +1,6 @@
 """Orchestrate the newsletter pipeline."""
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from sqlmodel import Session, func, select
@@ -35,7 +35,7 @@ def run(session: Session, send: bool = True) -> NewsletterRun:
         seeded = seed_as_sent(session)
         session.commit()
         run_record = NewsletterRun(
-            ran_at=datetime.now(timezone.utc),
+            ran_at=datetime.now(UTC),
             items_count=seeded,
             sent=False,
             intro_text="seeded",
@@ -47,7 +47,7 @@ def run(session: Session, send: bool = True) -> NewsletterRun:
         return run_record
 
     # Fetch new items
-    fetch_statuses = fetch_all(session)
+    fetch_all(session)
     session.commit()
 
     # Collect items to include (status=new, capped per source)
@@ -71,7 +71,7 @@ def run(session: Session, send: bool = True) -> NewsletterRun:
 
     if not capped:
         run_record = NewsletterRun(
-            ran_at=datetime.now(timezone.utc),
+            ran_at=datetime.now(UTC),
             items_count=0,
             sent=False,
             intro_text="no new items",
@@ -101,9 +101,10 @@ def run(session: Session, send: bool = True) -> NewsletterRun:
         r.id: r for r in session.exec(select(Region).where(Region.id.in_(region_ids))).all()  # type: ignore[attr-defined]
     }
 
-    run_dt = datetime.now(timezone.utc)
-    html = render_html(capped, feeds_by_id, regions_by_id, highlight_id_set, blurbs, intro, run_dt)
-    plaintext = render_plaintext(capped, feeds_by_id, regions_by_id, highlight_id_set, blurbs, intro, run_dt)
+    run_dt = datetime.now(UTC)
+    _render_args = (capped, feeds_by_id, regions_by_id, highlight_id_set, blurbs, intro, run_dt)
+    html = render_html(*_render_args)
+    plaintext = render_plaintext(*_render_args)
 
     # Write preview
     _PREVIEW_PATH.parent.mkdir(parents=True, exist_ok=True)

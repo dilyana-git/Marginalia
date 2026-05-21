@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlmodel import Session, func, select
@@ -25,7 +25,7 @@ def list_regions(session: Session = Depends(get_session)) -> list[Region]:
 
 @router.post("", response_model=RegionRead, status_code=status.HTTP_201_CREATED)
 def create_region(body: RegionCreate, session: Session = Depends(get_session)) -> Region:
-    region = Region(**body.model_dump(), created_at=datetime.now(timezone.utc), updated_at=datetime.now(timezone.utc))
+    region = Region(**body.model_dump(), created_at=datetime.now(UTC), updated_at=datetime.now(UTC))
     session.add(region)
     session.commit()
     session.refresh(region)
@@ -67,7 +67,7 @@ def update_region(
         raise _not_found(region_id)
     for field, value in body.model_dump(exclude_none=True).items():
         setattr(region, field, value)
-    region.updated_at = datetime.now(timezone.utc)
+    region.updated_at = datetime.now(UTC)
     session.add(region)
     session.commit()
     session.refresh(region)

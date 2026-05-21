@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlmodel import Session, select
@@ -30,7 +30,11 @@ def _not_found(list_id: int) -> HTTPException:
 def _item_not_found(list_id: int, work_id: int) -> HTTPException:
     return HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
-        detail={"title": "Not Found", "status": 404, "detail": f"Item work={work_id} not in list {list_id}."},
+        detail={
+            "title": "Not Found",
+            "status": 404,
+            "detail": f"Item work={work_id} not in list {list_id}.",
+        },
     )
 
 
@@ -54,7 +58,7 @@ def list_lists(session: Session = Depends(get_session)) -> list[ReadingList]:
 
 @router.post("", response_model=ReadingListRead, status_code=status.HTTP_201_CREATED)
 def create_list(body: ReadingListCreate, session: Session = Depends(get_session)) -> ReadingList:
-    lst = ReadingList(**body.model_dump(), is_system=False, created_at=datetime.now(timezone.utc))
+    lst = ReadingList(**body.model_dump(), is_system=False, created_at=datetime.now(UTC))
     session.add(lst)
     session.commit()
     session.refresh(lst)
@@ -99,7 +103,11 @@ def delete_list(list_id: int, session: Session = Depends(get_session)) -> None:
     if lst.is_system:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
-            detail={"title": "Conflict", "status": 409, "detail": "System lists cannot be deleted."},
+            detail={
+                "title": "Conflict",
+                "status": 409,
+                "detail": "System lists cannot be deleted.",
+            },
         )
     session.delete(lst)
     session.commit()
@@ -115,20 +123,28 @@ def add_item(
     if not session.get(Work, body.work_id):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail={"title": "Not Found", "status": 404, "detail": f"Work {body.work_id} not found."},
+            detail={
+                "title": "Not Found",
+                "status": 404,
+                "detail": f"Work {body.work_id} not found.",
+            },
         )
     # Auto-assign position if not provided
     existing = session.exec(
-        select(ListItem).where(ListItem.list_id == list_id).order_by(ListItem.position.desc())  # type: ignore[attr-defined]
+        select(ListItem)
+        .where(ListItem.list_id == list_id)
+        .order_by(ListItem.position.desc())  # type: ignore[attr-defined]
     ).first()
-    pos = body.position if body.position is not None else ((existing.position + 1) if existing else 0)
+    pos = body.position if body.position is not None else (
+        (existing.position + 1) if existing else 0
+    )
 
     item = ListItem(
         list_id=list_id,
         work_id=body.work_id,
         position=pos,
         note=body.note,
-        added_at=datetime.now(timezone.utc),
+        added_at=datetime.now(UTC),
     )
     session.add(item)
     session.commit()

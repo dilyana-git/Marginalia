@@ -12,29 +12,27 @@ def _build_prompt(reader_name: str, reader_interests: str, items: list[Newslette
     items_text = "\n\n".join(
         f"[{i + 1}] {item.title}\n{item.snippet[:300]}" for i, item in enumerate(items)
     )
-    return f"""You are writing a personalised daily reading digest for {reader_name}, {reader_interests}.
-
-Below are up to {len(items)} items from their curated RSS feeds.
-
-For each item, write a single sentence (max 25 words) that tells {reader_name} why this specific item is worth their time given their interests. Be specific, not generic. Do not use the word "discover".
-
-Then choose up to 3 item numbers that are the strongest highlights.
-
-Finally, write a 2-3 sentence introductory paragraph for today's digest.
-
-Respond in this exact JSON format:
-{{
-  "intro": "...",
-  "highlights": [1, 2],
-  "blurbs": {{
-    "1": "...",
-    "2": "...",
-    ...
-  }}
-}}
-
-Items:
-{items_text}"""
+    return (
+        f"You are writing a personalised daily reading digest for "
+        f"{reader_name}, {reader_interests}.\n\n"
+        f"Below are up to {len(items)} items from their curated RSS feeds.\n\n"
+        f"For each item, write a single sentence (max 25 words) that tells {reader_name} "
+        "why this specific item is worth their time given their interests. "
+        "Be specific, not generic. Do not use the word \"discover\".\n\n"
+        "Then choose up to 3 item numbers that are the strongest highlights.\n\n"
+        "Finally, write a 2-3 sentence introductory paragraph for today's digest.\n\n"
+        "Respond in this exact JSON format:\n"
+        "{{\n"
+        '  "intro": "...",\n'
+        '  "highlights": [1, 2],\n'
+        '  "blurbs": {{\n'
+        '    "1": "...",\n'
+        '    "2": "...",\n'
+        "    ...\n"
+        "  }}\n"
+        "}}\n\n"
+        f"Items:\n{items_text}"
+    )
 
 
 def summarize(
@@ -52,8 +50,9 @@ def summarize(
     if not items:
         return "", [], {}
 
-    import anthropic
     import json
+
+    import anthropic
 
     client = anthropic.Anthropic(api_key=api_key)
     prompt_items = items[:_MAX_ITEMS_FOR_PROMPT]
@@ -62,7 +61,12 @@ def summarize(
         response = client.messages.create(
             model=model_name,
             max_tokens=2048,
-            messages=[{"role": "user", "content": _build_prompt(reader_name, reader_interests, prompt_items)}],
+            messages=[
+                {
+                    "role": "user",
+                    "content": _build_prompt(reader_name, reader_interests, prompt_items),
+                }
+            ],
         )
         raw = response.content[0].text.strip()
         # Strip markdown code fences if present
@@ -83,7 +87,9 @@ def summarize(
         blurbs_by_id = {
             prompt_items[int(k) - 1].id: v
             for k, v in blurbs_by_index.items()
-            if k.isdigit() and 1 <= int(k) <= len(prompt_items) and prompt_items[int(k) - 1].id is not None
+            if k.isdigit()
+            and 1 <= int(k) <= len(prompt_items)
+            and prompt_items[int(k) - 1].id is not None
         }
 
         log.info("summarisation complete", items=len(prompt_items), highlights=len(highlight_ids))

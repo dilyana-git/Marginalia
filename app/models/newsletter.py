@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import UniqueConstraint
 from sqlmodel import Field, SQLModel
@@ -10,7 +10,7 @@ class NewsletterRun(SQLModel, table=True):
     __tablename__ = "newsletterrun"
 
     id: int | None = Field(default=None, primary_key=True)
-    ran_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    ran_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     items_count: int = Field(default=0)
     sent: bool = Field(default=False)
     recipient: str | None = None
@@ -36,4 +36,4 @@ class NewsletterItem(SQLModel, table=True):
     )
     saved_work_id: int | None = Field(default=None, foreign_key="work.id")
     sent_in_run_id: int | None = Field(default=None, foreign_key="newsletterrun.id")
-    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))

@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlmodel import Session, select
@@ -25,7 +25,7 @@ def list_tags(session: Session = Depends(get_session)) -> list[Tag]:
 
 @router.post("", response_model=TagRead, status_code=status.HTTP_201_CREATED)
 def create_tag(body: TagCreate, session: Session = Depends(get_session)) -> Tag:
-    tag = Tag(**body.model_dump(), created_at=datetime.now(timezone.utc))
+    tag = Tag(**body.model_dump(), created_at=datetime.now(UTC))
     session.add(tag)
     session.commit()
     session.refresh(tag)

@@ -1,6 +1,6 @@
 """Fetch active RSS/Atom feeds and upsert NewsletterItems."""
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from email.utils import parsedate_to_datetime
 
 import feedparser
@@ -23,13 +23,13 @@ def _parse_dt(entry: dict) -> datetime | None:
             continue
         if hasattr(val, "tm_year"):
             try:
-                return datetime(*val[:6], tzinfo=timezone.utc)
+                return datetime(*val[:6], tzinfo=UTC)
             except Exception:
                 continue
         if isinstance(val, str):
             try:
                 dt = parsedate_to_datetime(val)
-                return dt.astimezone(timezone.utc)
+                return dt.astimezone(UTC)
             except Exception:
                 continue
     return None
@@ -53,7 +53,7 @@ def fetch_all(session: Session) -> dict[int, str]:
     cfg = session.exec(select(AppSettings).where(AppSettings.id == 1)).first()
     lookback_days = cfg.lookback_days if cfg else 7
     max_per_source = min(cfg.max_per_source if cfg else 6, _PER_FEED_SAFETY_CAP)
-    cutoff = datetime.now(timezone.utc) - timedelta(days=lookback_days)
+    cutoff = datetime.now(UTC) - timedelta(days=lookback_days)
 
     feeds = session.exec(select(Feed).where(Feed.active == True)).all()  # noqa: E712
     statuses: dict[int, str] = {}
@@ -88,7 +88,7 @@ def fetch_all(session: Session) -> dict[int, str]:
                     published_at=published,
                     snippet=_snippet(entry),
                     status=NewsletterItemStatus.new,
-                    created_at=datetime.now(timezone.utc),
+                    created_at=datetime.now(UTC),
                 )
                 session.add(item)
                 new_count += 1
@@ -104,7 +104,7 @@ def fetch_all(session: Session) -> dict[int, str]:
             feed.last_status = status
             log.warning("feed fetch failed", name=feed.name, error=str(exc))
 
-        feed.last_fetched_at = datetime.now(timezone.utc)
+        feed.last_fetched_at = datetime.now(UTC)
         session.add(feed)
 
     session.flush()
@@ -138,7 +138,7 @@ def seed_as_sent(session: Session) -> int:
                     published_at=_parse_dt(entry),
                     snippet=_snippet(entry),
                     status=NewsletterItemStatus.sent,
-                    created_at=datetime.now(timezone.utc),
+                    created_at=datetime.now(UTC),
                 )
                 session.add(item)
                 count += 1
